@@ -79,11 +79,11 @@ class Stopwatch(QWidget):
 
     # this function will handle starting the time
     def start(self):
-        pass
+        self.timer.start(10)
 
     # this function will handle stopping the time
     def stop(self):
-        pass
+        self.timer.stop()
 
     # this function will handle resetting the time
     def reset(self):
@@ -91,11 +91,18 @@ class Stopwatch(QWidget):
 
     # this function will handle formatting the time
     def format_time(self, time):
-        pass
+        # creates our variables using time
+        hours = time.hour()
+        minutes = time.minute()
+        seconds = time.second()
+        milliseconds = time.msec() // 10 # converts milliseconds from 3 digits to 2
+        # uses format specifier for 2 leading zeros
+        return f"{hours:02}:{minutes:02}:{seconds:02}.{milliseconds:02}"
 
     # this function will handle updating the time displayed
     def update_display(self):
-        pass
+        self.time = self.time.addMSecs(10)
+        self.time_label.setText(self.format_time(self.time))
 
 if __name__ == "__main__":
     app  = QApplication(sys.argv)
