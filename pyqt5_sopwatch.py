@@ -27,7 +27,55 @@ class Stopwatch(QWidget):
     
     # this is where we will be designing the user interface
     def initUI(self):
-        pass
+        # changes name of window title
+        self.setWindowTitle("Stopwatch")
+
+        # declares vbox will have a vertical box layout
+        vbox = QVBoxLayout()
+        # adds our widget to the vbox (time label)
+        vbox.addWidget(self.time_label)
+
+        # passes in our vertical layout manager to set as the layout
+        self.setLayout(vbox)
+
+        # gets our time label and centers it vetically/horizontally
+        self.time_label.setAlignment(Qt.AlignCenter)
+
+        # declares hbox will have a horizontal box layout
+        hbox = QHBoxLayout()
+        # adds our widgeta to the hbox (buttons)
+        hbox.addWidget(self.start_button)
+        hbox.addWidget(self.stop_button)
+        hbox.addWidget(self.reset_button)
+
+        # adds group of buttons in hbox to the vbox
+        vbox.addLayout(hbox)
+
+        self.setStyleSheet("""
+            QPushButton, QLabel {
+                padding: 20px;
+                font-weight: bold;
+                font-family: calibri;
+            }
+            QPushButton {
+                color: black;
+                font-size: 50px;
+                background-color: hsl(44, 4%, 79%);
+                border-radius: 20px
+            }   
+            QLabel {
+                color: black;
+                font-size: 120px;
+                background-color: hsl(200, 100%, 85%);
+            }                 
+        """)
+
+        # connects our buttons to its specific function
+        self.start_button.clicked.connect(self.start)
+        self.stop_button.clicked.connect(self.stop)
+        self.reset_button.clicked.connect(self.reset)
+        # connects our timer update to its specific function
+        self.timer.timeout.connect(self.update_display)
 
     # this function will handle starting the time
     def start(self):
@@ -56,4 +104,4 @@ if __name__ == "__main__":
     # show our stopwatch object
     stopwatch.show()
     # stopwatch object remains visible until exited
-    sys.exit(app.exec_)
+    sys.exit(app.exec_())
