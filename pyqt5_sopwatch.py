@@ -24,6 +24,30 @@ class Stopwatch(QWidget):
         # adds timer to the clock
         self.timer = QTimer(self)
         self.initUI()
+    
+    # this is where we will be designing the user interface
+    def initUI(self):
+        pass
+
+    # this function will handle starting the time
+    def start(self):
+        pass
+
+    # this function will handle stopping the time
+    def stop(self):
+        pass
+
+    # this function will handle resetting the time
+    def reset(self):
+        pass
+
+    # this function will handle formatting the time
+    def format_time(self, time):
+        pass
+
+    # this function will handle updating the time displayed
+    def update_display(self):
+        pass
 
 if __name__ == "__main__":
     app  = QApplication(sys.argv)
